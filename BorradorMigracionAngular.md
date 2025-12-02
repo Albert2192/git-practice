@@ -143,15 +143,55 @@ Remove-Item -Force package-lock.json
 npm install
 ```
 
-### 4. Verificar Versiones de Herramientas
+### 4. Verificar y Actualizar Node.js
+
+**⚠️ CRÍTICO:** Angular CLI verifica la versión de Node.js antes de ejecutar migraciones. Una versión incompatible hará que `ng update` falle.
+
+#### Compatibilidad Node.js por Versión de Angular
+
+| Angular | Node.js Requerido | npm Recomendado |
+|---------|------------------|------------------|
+| 16 | 16.14+ o 18.10+ | 8.x+ |
+| **17** | **18.13+ o 20.9+** | **9.x+** |
+| **18** | **18.19+ o 20.11+** | **10.x+** |
+| **19** | **18.19+ o 20.11+ o 22.x** | **10.x+** |
+
+#### Verificar Versión Actual
 
 ```powershell
-# Node.js (Recomendado: 18.x o 20.x LTS)
+# Node.js
 node --version
 
-# npm (Recomendado: 9.x o superior)
+# npm
 npm --version
+```
 
+#### Actualizar Node.js
+
+**Opción 1: Con nvm (Recomendado)**
+
+```powershell
+# Listar versiones disponibles
+nvm list available
+
+# Instalar Node.js 20 LTS (recomendado para Angular 17+)
+nvm install 20.11.0
+
+# Usar la versión instalada
+nvm use 20.11.0
+
+# Verificar
+node --version
+npm --version
+```
+
+**Opción 2: Descarga directa**
+- Descargar desde: https://nodejs.org/
+- Instalar versión LTS 20.x
+
+#### Verificar Angular CLI Global
+
+```powershell
 # Angular CLI Global
 npm list -g @angular/cli
 
@@ -164,6 +204,23 @@ npm install -g @angular/cli@latest
 ## 🚀 Migración Paso a Paso
 
 ## Fase 1: Angular 16 → 17
+
+### Paso 1.0: Verificar Node.js
+
+**⚠️ ANTES DE EMPEZAR:** Angular 17 requiere Node.js 18.13+ o 20.9+
+
+```powershell
+# Verificar versión actual
+node --version
+
+# Si es menor a 18.13, actualizar con nvm
+nvm install 20.11.0
+nvm use 20.11.0
+
+# Verificar nuevamente
+node --version  # Debe mostrar v20.11.0 o superior
+npm --version   # Debe mostrar v10.x o superior
+```
 
 ### 📌 Novedades Principales de Angular 17
 
@@ -388,6 +445,23 @@ git push
 
 ## Fase 2: Angular 17 → 18
 
+### Paso 2.0: Verificar Node.js
+
+**⚠️ ANTES DE EMPEZAR:** Angular 18 requiere Node.js 18.19+ o 20.11+
+
+```powershell
+# Verificar versión actual
+node --version
+
+# Si es menor a 18.19, actualizar con nvm
+nvm install 20.11.0
+nvm use 20.11.0
+
+# Verificar nuevamente
+node --version  # Debe mostrar v20.11.0 o superior
+npm --version   # Debe mostrar v10.x o superior
+```
+
 ### 📌 Novedades Principales de Angular 18
 
 1. **🎯 Zoneless Change Detection (Experimental)**
@@ -540,6 +614,27 @@ git push
 ---
 
 ## Fase 3: Angular 18 → 19
+
+### Paso 3.0: Verificar Node.js
+
+**⚠️ ANTES DE EMPEZAR:** Angular 19 requiere Node.js 18.19+, 20.11+ o 22.x
+
+```powershell
+# Verificar versión actual
+node --version
+
+# Si es menor a 18.19, actualizar con nvm
+nvm install 20.11.0
+nvm use 20.11.0
+
+# O instalar Node.js 22 (última LTS)
+nvm install 22
+nvm use 22
+
+# Verificar nuevamente
+node --version  # Debe mostrar v20.11.0+ o v22.x
+npm --version   # Debe mostrar v10.x o superior
+```
 
 ### 📌 Novedades Principales de Angular 19
 
